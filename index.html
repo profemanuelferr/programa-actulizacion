@@ -1,268 +1,444 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="azules">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Educación Híbrida en el Nivel Superior</title>
-  <meta name="description" content="Página informativa y educativa sobre Educación Híbrida en el Nivel Superior. Orientaciones pedagógicas, diseño de EVA y desafíos actuales." />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transformación en Altamar – Desafíos de la Educación Híbrida</title>
+  <meta name="description" content="Programa de Actualización Académica en Entornos Virtuales de Aprendizaje y Educación Híbrida." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #2563eb;
-      --secondary: #22c55e;
-      --accent: #f97316;
-      --bg: #f9fafb;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --card: #ffffff;
+    :root{
+      --bg:#0f172a; --surface:#0b2239; --card:#102b46; --ink:#e6f6ff; --ink-2:#c6e6ff;
+      --accent:#22c55e; --accent-2:#a3e635; --outline:#2b425d; --chip:#1d3149;
+      --link:#7dd3fc; --link-visited:#c4b5fd;
+    }
+    :root.hc{
+      --bg:#000; --surface:#000; --card:#000; --ink:#fff; --ink-2:#fff;
+      --accent:#00ff90; --accent-2:#baff00; --outline:#333; --chip:#111;
+      --link:#80ffff; --link-visited:#ff80ff;
+      letter-spacing:.2px;
+    }
+    /* Paletas accesibles */
+    :root[data-theme="azules"]{
+      --bg:#0f172a; --surface:#0b2239; --card:#102b46; --ink:#e6f6ff; --ink-2:#c6e6ff; --accent:#22c55e; --accent-2:#a3e635; --outline:#2b425d; --chip:#1d3149; --link:#7dd3fc; --link-visited:#c4b5fd;
+    }
+    :root[data-theme="blancos"]{
+      --bg:#f7fafc; --surface:#ffffff; --card:#eef2f7; --ink:#0f172a; --ink-2:#1f2937; --accent:#0ea5e9; --accent-2:#22c55e; --outline:#cbd5e1; --chip:#e2e8f0; --link:#0ea5e9; --link-visited:#7c3aed;
+    }
+    :root[data-theme="verdes"]{
+      --bg:#0b1f18; --surface:#0e2e25; --card:#114238; --ink:#e7fff7; --ink-2:#caffee; --accent:#22c55e; --accent-2:#86efac; --outline:#1b5c4e; --chip:#10382f; --link:#7ae4c1; --link-visited:#b6f0d9;
+    }
+    :root[data-theme="moradas"]{
+      --bg:#180f2a; --surface:#24123a; --card:#2d1650; --ink:#f3e8ff; --ink-2:#e9d5ff; --accent:#a78bfa; --accent-2:#22c55e; --outline:#3a2467; --chip:#261a44; --link:#c4b5fd; --link-visited:#7dd3fc;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    html,body{height:100%}
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:Inter,system-ui,Arial,sans-serif;
+      background:var(--bg); color:var(--ink); scroll-behavior:smooth
     }
+    a{color:var(--link)} a:visited{color:var(--link-visited)}
 
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
+    /* Layout */
+    .wrap{max-width:1100px; margin:0 auto; padding:clamp(16px,2vw,28px)}
+    header{border-bottom:1px solid var(--outline); background:radial-gradient(1200px 300px at 80% -20%, #1f5b7a 0%, #0d2740 60%, transparent 80%)}
+    .hero{display:grid; grid-template-columns: 1fr; gap:14px; align-items:center; text-align:center}
+    .brand-logo-top{width:min(260px,40vw); height:auto; margin:6px auto 0 auto; display:block}
+    .hero h1{margin:.3rem 0 0; font-size: clamp(30px,5vw,52px); line-height:1.1; font-weight:800}
+    .subtitle{margin:.2rem 0 0; color:var(--ink-2)}
+    nav{margin:16px 0 6px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center}
+    .chip{padding:.5rem .8rem; border:1px solid var(--outline); border-radius:999px; background:var(--chip)}
+    .chip a{color:var(--ink); text-decoration:none}
 
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
-      padding: 4rem 1.5rem;
-      text-align: center;
-    }
+    main{display:grid; gap:22px; background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.02) 100%)}
+    section{background:linear-gradient(165deg, rgba(255,255,255,.03), rgba(255,255,255,0)); border:1px solid var(--outline); border-radius:16px; padding:clamp(16px,2vw,26px); position:relative}
+    section h2{margin:0 0 12px; font-size: clamp(22px,3vw,32px)}
+    ul{margin:.2rem 0 0 1rem} li{margin:.3rem 0}
 
-    header h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 1rem;
+    /* Botón "Leer esta sección" */
+    .tts-section-btn{
+      position:absolute; top:12px; right:12px; font-size:.9rem;
+      padding:.4rem .6rem; border-radius:.5rem; border:1px solid var(--outline);
+      background:var(--surface); color:var(--ink); cursor:pointer
     }
+    .reading{ outline:3px solid var(--accent); outline-offset:4px }
 
-    header p {
-      max-width: 760px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      opacity: 0.95;
-    }
+    /* Accesibilidad */
+    .controls{display:flex; gap:12px; align-items:center; flex-wrap:wrap; background:var(--card); padding:12px; border-radius:10px; border:1px solid var(--outline)}
+    .select, .btn{padding:.6rem .8rem; border-radius:.6rem; border:1px solid var(--outline); background:var(--surface); color:var(--ink); cursor:pointer}
+    .btn{text-decoration:none; display:inline-block}
+    .download .btn{background:var(--accent); border-color:var(--accent-2); color:#001b0a; font-weight:700}
+    .download .btn:hover{filter:brightness(1.05)}
 
-    nav {
-      background: #fff;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
+    footer{border-top:1px solid var(--outline); margin-top:8px; background:var(--surface)}
+    .footer-brand{display:flex; align-items:center; justify-content:center; gap:12px; padding:12px 0}
+    .footer-brand img{width:min(200px,32vw); height:auto}
+    .credits{color:var(--ink-2); text-align:center}
 
-    nav ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      list-style: none;
-      padding: 0.75rem 1rem;
-      gap: 1rem;
+    /* ====== Panel combinado Accesibilidad + Lector (izquierda) ====== */
+    #a11y-btn{
+      position:fixed; left:16px; bottom:16px; z-index:99999;
+      background:#111827; color:#fff; border:2px solid #22c55e; border-radius:999px;
+      padding:.6rem .9rem; cursor:pointer
     }
-
-    nav a {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 600;
-      font-size: 0.95rem;
+    #a11y-panel{
+      position:fixed; left:16px; bottom:64px; z-index:99998; width:380px; max-width:calc(100% - 32px);
+      background:#0b2239; color:#e6f6ff; border:1px solid #2b425d; border-radius:12px; padding:12px;
+      box-shadow:0 8px 24px rgba(0,0,0,.4); display:none
     }
-
-    nav a:hover {
-      color: var(--primary);
+    #a11y-panel.open{ display:block }
+    #a11y-panel h3{ margin:0 0 6px; font-size:1.1rem }
+    #a11y-panel p.desc{ margin:0 0 8px; color:#c6e6ff }
+    #a11y-panel .row{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0; align-items:center }
+    #a11y-panel label{min-width:110px}
+    #a11y-panel select, #a11y-panel input[type=range]{flex:1}
+    #a11y-panel button{
+      flex:1 1 auto; padding:.6rem .7rem; border-radius:.6rem; border:1px solid #2b425d;
+      background:#102b46; color:#e6f6ff; cursor:pointer
     }
-
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem;
-      display: grid;
-      gap: 3rem;
-    }
-
-    section {
-      background: var(--card);
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    }
-
-    section h2 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
-    }
-
-    section p {
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .card {
-      border: 1px solid #e5e7eb;
-      border-radius: 0.75rem;
-      padding: 1.25rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-    }
-
-    .card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      color: var(--accent);
-    }
-
-    footer {
-      background: #111827;
-      color: #e5e7eb;
-      text-align: center;
-      padding: 2rem 1.5rem;
-      font-size: 0.9rem;
-    }
-
-    footer span {
-      color: var(--secondary);
-      font-weight: 600;
-    }
+    #a11y-panel button[aria-pressed="true"]{ border-color:#22c55e; box-shadow:0 0 0 2px rgba(34,197,94,.4) }
+    #a11y-panel hr{ border:none; border-top:1px solid #2b425d; margin:10px 0 }
   </style>
 </head>
-
 <body>
-
   <header>
-    <h1>Educación Híbrida en el Nivel Superior</h1>
-    <p>
-      Orientaciones pedagógicas para repensar la enseñanza, el aprendizaje y la evaluación
-      en entornos presenciales y virtuales integrados.
-    </p>
+    <div class="wrap hero">
+      <!-- LOGO SUPERIOR GRANDE -->
+      <img class="brand-logo-top" src="assets/logo.png" alt="Logo institucional">
+
+      <h1>Transformación en Altamar</h1>
+      <p class="subtitle"><strong>Desafíos de la educación híbrida en la formación docente inicial</strong></p>
+
+      <nav aria-label="Secciones">
+        <span class="chip"><a href="#presentacion">Presentación</a></span>
+        <span class="chip"><a href="#objetivos">Objetivos</a></span>
+        <span class="chip"><a href="#contenidos">Contenidos</a></span>
+        <span class="chip"><a href="#destinatarios">Destinatarios</a></span>
+        <span class="chip"><a href="#meta">Duración • Formato • Requisitos</a></span>
+        <span class="chip"><a href="#evaluacion">Evaluación</a></span>
+        <span class="chip"><a href="#bibliografia">Bibliografía</a></span>
+        <span class="chip"><a href="#accesibilidad">Accesibilidad</a></span>
+        <span class="chip"><a href="#descargas">Descargas</a></span>
+      </nav>
+    </div>
   </header>
 
-  <nav>
-    <ul>
-      <li><a href="#marco">Marco General</a></li>
-      <li><a href="#eva">Entornos Virtuales</a></li>
-      <li><a href="#tpack">Modelo TPACK</a></li>
-      <li><a href="#desafios">Desafíos</a></li>
-      <li><a href="#competencias">Competencias Digitales</a></li>
-    </ul>
-  </nav>
-
-  <main>
-
-    <section id="marco">
-      <h2>¿Qué es la Educación Híbrida?</h2>
-      <p>
-        La educación híbrida es una propuesta pedagógica que integra de manera intencional
-        instancias presenciales y virtuales, promoviendo trayectorias formativas más flexibles,
-        inclusivas y centradas en el estudiante.
-      </p>
-      <p>
-        No se trata de trasladar la clase tradicional al entorno digital, sino de rediseñar
-        las prácticas de enseñanza, aprendizaje y evaluación considerando nuevos roles,
-        tiempos y espacios.
-      </p>
+  <main class="wrap">
+    <section id="presentacion">
+      <button class="tts-section-btn" data-tts="#presentacion">🔊 Leer esta sección</button>
+      <h2>Presentación</h2>
+      <p>Esta Actualización Académica forma parte de una propuesta integral de Formación Continua destinada a docentes del Nivel de Educación Superior, con el propósito de fortalecer las competencias pedagógicas y tecnológicas necesarias en entornos educativos híbridos y virtuales.</p>
+      <p>La especialización está orientada a profesionales y/o docentes interesados en la enseñanza mediada por tecnologías digitales, la educación a distancia y la innovación pedagógica. Proporciona las herramientas necesarias para diseñar, desarrollar, implementar y gestionar entornos virtuales de aprendizaje, así como para evaluar de manera efectiva los procesos educativos en línea.</p>
+      <p>A lo largo de la formación, los participantes desarrollarán competencias complejas y transferibles, que les permitirán adaptarse a las nuevas tecnologías y generar propuestas didácticas acordes con la educación emergente. Este proceso implica una reflexión constante sobre el modelo educativo propio y el posicionamiento docente frente a los cambios que demanda la sociedad del conocimiento. Asimismo, se promueve la integración de recursos multimedia y tecnología interactiva como estrategia para optimizar la retención de la información, la motivación y el rendimiento académico de los estudiantes.</p>
     </section>
 
-    <section id="eva">
-      <h2>Entornos Virtuales de Aprendizaje (EVA)</h2>
-      <p>
-        Los EVA constituyen el espacio central para la educación híbrida. Su diseño pedagógico
-        debe contemplar múltiples dimensiones que favorezcan aprendizajes significativos.
-      </p>
+    <section id="objetivos">
+      <button class="tts-section-btn" data-tts="#objetivos">🔊 Leer esta sección</button>
+      <h2>Objetivos</h2>
+      <ul>
+        <li>Conocer los modelos y enfoques pedagógicos aplicados a la Educación a Distancia (EaD) y su vinculación con el uso significativo de la tecnología.</li>
+        <li>Utilizar de manera pertinente y creativa diversos recursos tecnológicos disponibles en la web para su implementación en aulas virtuales.</li>
+        <li>Dominar el marco normativo vigente para la implementación de la Educación Híbrida en la Formación Docente.</li>
+        <li>Comprender la importancia de los derechos de autor, la propiedad intelectual y los acuerdos de convivencia en entornos virtuales.</li>
+        <li>Elaborar contenidos digitales de calidad, tales como textos académicos, actividades interactivas y materiales multimedia.</li>
+      </ul>
+    </section>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Dimensión Informativa</h3>
-          <p>Selección y curaduría de recursos digitales relevantes y confiables.</p>
-        </div>
-        <div class="card">
-          <h3>Dimensión Práxica</h3>
-          <p>Actividades que promuevan la producción, la reflexión y la resolución de problemas.</p>
-        </div>
-        <div class="card">
-          <h3>Dimensión Comunicativa</h3>
-          <p>Espacios de intercambio, diálogo y retroalimentación continua.</p>
-        </div>
-        <div class="card">
-          <h3>Dimensión Tutorial</h3>
-          <p>Acompañamiento docente, seguimiento y evaluación formativa.</p>
-        </div>
+    <section id="contenidos">
+      <button class="tts-section-btn" data-tts="#contenidos">🔊 Leer esta sección</button>
+      <h2>Contenidos</h2>
+
+      <h3>Eje 1 – Introducción a la EaD</h3>
+      <ul>
+        <li>Enfoques pedagógicos y entornos personales de aprendizaje (PLE).</li>
+        <li>Modelos y enfoques para la EaD y su vinculación con las tecnologías.</li>
+        <li>Importancia del PLE para la construcción del conocimiento, la autonomía y la autogestión del aprendizaje.</li>
+        <li>Rol docente y estudiantil en contextos mediados por tecnologías.</li>
+      </ul>
+
+      <h3>Eje 2 – Marco Normativo de la EaD</h3>
+      <ul>
+        <li>Marco legal para la educación híbrida en Misiones (Resolución 476/24) y normativa nacional complementaria.</li>
+        <li>Derechos de autor y propiedad intelectual en contenidos educativos digitales.</li>
+        <li>Licencias abiertas (Creative Commons y similares).</li>
+        <li>Normas de convivencia, netiqueta y promoción de la ciudadanía digital responsable.</li>
+      </ul>
+
+      <h3>Eje 3 – Herramientas Digitales</h3>
+      <ul>
+        <li>Recursos digitales para la planificación, mediación y evaluación.</li>
+        <li>Diseño de clases interactivas y accesibles en entornos híbridos.</li>
+        <li>Evaluación de la usabilidad, accesibilidad, sostenibilidad y pertinencia de herramientas digitales.</li>
+      </ul>
+
+      <h3>Eje 4 – Alfabetización Académica y Digital</h3>
+      <ul>
+        <li>Producción de contenidos digitales: criterios didácticos, comunicacionales y técnicos.</li>
+        <li>Diferencias entre contenidos digitalizados y contenidos digitales originales.</li>
+        <li>Alfabetización académica y digital como eje transversal.</li>
+        <li>Diseño accesible e inclusivo de recursos para la enseñanza.</li>
+      </ul>
+
+      <h3>Eje 5 – Laboratorios Virtuales</h3>
+      <ul>
+        <li>Diseño de entornos formativos en línea: estructura, navegación, interacción y soporte.</li>
+        <li>Formulación de objetivos, selección de contenidos y estrategias de evaluación.</li>
+        <li>Implementación en diferentes modalidades (curso, taller, seminario, proyectos PBL, etc.).</li>
+        <li>Maquetado y configuración del aula virtual (estructura, estética, recursos).</li>
+      </ul>
+    </section>
+
+    <section id="destinatarios">
+      <button class="tts-section-btn" data-tts="#destinatarios">🔊 Leer esta sección</button>
+      <h2>Destinatarios</h2>
+      <ul>
+        <li>Docentes y directivos de todos los niveles y modalidades educativas.</li>
+        <li>Profesionales interesados en la incorporación de tecnologías en la enseñanza.</li>
+        <li>Diseñadores didácticos e instruccionales.</li>
+        <li>Responsables de proyectos TIC aplicados a la educación.</li>
+      </ul>
+    </section>
+
+    <section id="meta">
+      <button class="tts-section-btn" data-tts="#meta">🔊 Leer esta sección</button>
+      <h2>Duración, Formato y Requisitos</h2>
+      <ul>
+        <li><strong>Duración:</strong> Cursado 440 horas (8 meses) y Trabajo Final Integrador (TIF).</li>
+        <li><strong>Formato:</strong> Semipresencial – Híbrido.</li>
+        <li><strong>Requisitos de admisión:</strong> Título de grado universitario (mín. 4 años) o título de Nivel Superior no universitario (mín. 4 años).</li>
+      </ul>
+    </section>
+
+    <section id="evaluacion">
+      <button class="tts-section-btn" data-tts="#evaluacion">🔊 Leer esta sección</button>
+      <h2>Evaluación y acreditación</h2>
+      <ul>
+        <li>Evaluación continua (procesual) y evaluación final.</li>
+        <li>Presentación y aprobación del Trabajo Final Integrador (TIF).</li>
+        <li>Cada módulo contará con material didáctico, actividades prácticas y evaluación específica.</li>
+        <li>Acompañamiento y tutoría permanente por parte del equipo docente.</li>
+      </ul>
+    </section>
+
+    <section id="bibliografia">
+      <button class="tts-section-btn" data-tts="#bibliografia">🔊 Leer esta sección</button>
+      <h2>Bibliografía</h2>
+      <ul>
+        <li>Adell, J., &amp; Area, M. (2009). <em>eLearning: Enseñar y aprender en espacios virtuales</em>. En J. Cabero &amp; J. Barroso (Eds.), <em>Tecnología educativa. La formación del profesorado en la era de Internet</em> (pp. 391–424). Ediciones Aljibe.</li>
+        <li>Consejo Federal de Educación. (2024, 28 de agosto). <em>Resolución CFE N.º 476/24: Lineamientos Curriculares Nacionales para la Formación Docente Inicial</em>. República Argentina.</li>
+        <li>Ley de Educación Nacional N.º 26.206, de 14 de diciembre de 2006. <em>Boletín Oficial de la República Argentina</em>, 28 de diciembre de 2006. Argentina.</li>
+        <li>Ministerio de Educación de la Nación. (2017). <em>Competencias de educación digital</em>. Presidencia de la Nación.</li>
+        <li>UNESCO. (2023). <em>Informe de seguimiento de la educación en el mundo, 2023</em>: Tecnología en la educación.</li>
+      </ul>
+    </section>
+
+    <section id="accesibilidad">
+      <button class="tts-section-btn" data-tts="#accesibilidad">🔊 Leer esta sección</button>
+      <h2>Accesibilidad web</h2>
+      <p>Podés elegir una paleta de colores legibles y ajustar el contraste para mejorar tu experiencia de lectura.</p>
+      <div class="controls" role="group" aria-label="Controles de color y contraste">
+        <label for="colorSelect">Paleta de color:</label>
+        <select id="colorSelect" class="select">
+          <option value="azules" selected>Azules</option>
+          <option value="blancos">Blancos</option>
+          <option value="verdes">Verdes</option>
+          <option value="moradas">Moradas</option>
+        </select>
+        <label for="contrastSelect">Contraste:</label>
+        <select id="contrastSelect" class="select">
+          <option value="alto" selected>Alto</option>
+          <option value="bajo">Bajo</option>
+        </select>
       </div>
     </section>
 
-    <section id="tpack">
-      <h2>Modelo Pedagógico TPACK</h2>
-      <p>
-        El modelo TPACK integra tres saberes fundamentales: el conocimiento disciplinar,
-        pedagógico y tecnológico. La articulación de estos componentes permite un uso
-        significativo de las TIC en la enseñanza.
-      </p>
-      <p>
-        Este enfoque favorece el desarrollo de propuestas didácticas contextualizadas,
-        colaborativas y orientadas a la construcción de entornos personales de aprendizaje (PLE).
-      </p>
+    <section id="descargas" class="download">
+      <button class="tts-section-btn" data-tts="#descargas">🔊 Leer esta sección</button>
+      <h2>Descargas</h2>
+      <p>Descargá el programa completo en PDF:</p>
+      <a class="btn" href="https://drive.google.com/file/d/1omUCtsJj-iawlUdIYuIKvJIY-bN_Qik5/view?usp=drive_link" target="_blank" rel="noopener">📄 Descargar Programa (PDF)</a>
     </section>
-
-    <section id="desafios">
-      <h2>Principales Desafíos</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>El Conocimiento</h3>
-          <p>Superar la memorización y promover el pensamiento complejo y profundo.</p>
-        </div>
-        <div class="card">
-          <h3>El Aprendizaje</h3>
-          <p>Atender a las características del estudiante del nuevo milenio.</p>
-        </div>
-        <div class="card">
-          <h3>La Enseñanza</h3>
-          <p>Redefinir el rol docente como mediador y guía de procesos.</p>
-        </div>
-        <div class="card">
-          <h3>La Organización</h3>
-          <p>Avanzar hacia modelos institucionales más flexibles y colaborativos.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="competencias">
-      <h2>Competencias de la Educación Digital</h2>
-      <p>
-        La implementación efectiva de la educación híbrida requiere docentes con competencias
-        digitales que integren lo tecnológico, lo pedagógico y lo ético.
-      </p>
-      <p>
-        Estas competencias permiten diseñar experiencias inclusivas, accesibles y alineadas
-        con el Diseño Universal para el Aprendizaje (DUA).
-      </p>
-    </section>
-
   </main>
 
   <footer>
-    <p>
-      Página educativa – Nivel Superior · Diseño HTML listo para <span>GitHub Pages</span>
-    </p>
+    <div class="wrap">
+      <!-- LOGO INFERIOR GRANDE -->
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Logo institucional">
+      </div>
+      <p class="credits">Diseño tipo infografía accesible. © 2025. para la Actualización Académica en Entornos Virtuales de Aprendizaje y Educación Híbrida</p>
+    </div>
   </footer>
 
+  <!-- ====== Panel combinado Accesibilidad web + Lector en voz (izquierda) ====== -->
+  <button id="a11y-btn" aria-haspopup="dialog" aria-controls="a11y-panel" title="Accesibilidad (Ctrl+Alt+A)">♿ Accesibilidad</button>
+  <div id="a11y-panel" role="dialog" aria-labelledby="a11y-title">
+    <h3 id="a11y-title">Accesibilidad web · Lector en voz</h3>
+    <p class="desc">Podés elegir una paleta de colores legibles y ajustar el contraste para mejorar tu experiencia de lectura.</p>
+
+    <div class="row" aria-label="Paleta y contraste">
+      <label for="a11y-theme">Paleta de color:</label>
+      <select id="a11y-theme">
+        <option value="azules" selected>Azules</option>
+        <option value="blancos">Blancos</option>
+        <option value="verdes">Verdes</option>
+        <option value="moradas">Moradas</option>
+      </select>
+      <label for="a11y-contrast">Contraste:</label>
+      <select id="a11y-contrast">
+        <option value="alto" selected>Alto</option>
+        <option value="bajo">Bajo</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <button id="a11y-links" aria-pressed="false">Resaltar enlaces</button>
+      <button id="a11y-spacing" aria-pressed="false">Espaciado de texto</button>
+      <button id="a11y-noanim" aria-pressed="false">Detener animaciones</button>
+    </div>
+
+    <hr aria-hidden="true"/>
+
+    <h3>Lector en voz</h3>
+    <div class="row">
+      <label for="a11y-voice">Voz:</label>
+      <select id="a11y-voice"></select>
+    </div>
+    <div class="row">
+      <label for="a11y-rate">Velocidad:</label>
+      <input id="a11y-rate" type="range" min="0.7" max="1.6" step="0.1" value="1" aria-label="Velocidad de lectura">
+      <small id="a11y-rateVal">1x</small>
+    </div>
+    <div class="row">
+      <button id="a11y-read">Leer toda la página</button>
+      <button id="a11y-pause">Pausa</button>
+      <button id="a11y-stop">Detener</button>
+    </div>
+  </div>
+
+  <!-- ====== Lógica del panel combinado (Accesibilidad + TTS) ====== -->
+  <script>
+    (function(){
+      // --- Estado/tema global ---
+      const root = document.documentElement;
+      const colorSel = document.getElementById('colorSelect');
+      const contrastSel = document.getElementById('contrastSelect');
+      const savedTheme = localStorage.getItem('theme') || root.getAttribute('data-theme') || 'azules';
+      root.setAttribute('data-theme', savedTheme);
+      if (colorSel) colorSel.value = savedTheme;
+      const savedContrast = localStorage.getItem('contrast') || 'alto';
+      if (savedContrast === 'alto') root.classList.add('hc'); else root.classList.remove('hc');
+      if (contrastSel) contrastSel.value = savedContrast;
+
+      // --- Botón y panel ---
+      const btn = document.getElementById('a11y-btn');
+      const panel = document.getElementById('a11y-panel');
+      btn.addEventListener('click', () => panel.classList.toggle('open'));
+      document.addEventListener('keydown', (e)=>{ if(e.ctrlKey && e.altKey && e.key.toLowerCase()==='a'){ panel.classList.toggle('open'); } });
+
+      // --- Controles de paleta/contraste dentro del panel ---
+      const themeSel = document.getElementById('a11y-theme');
+      const contrast2 = document.getElementById('a11y-contrast');
+      themeSel.value = savedTheme; contrast2.value = savedContrast;
+
+      function setTheme(v){ root.setAttribute('data-theme', v); localStorage.setItem('theme', v); if (colorSel) colorSel.value=v; }
+      function setContrast(v){ if(v==='alto') root.classList.add('hc'); else root.classList.remove('hc'); localStorage.setItem('contrast', v); if (contrastSel) contrastSel.value=v; }
+
+      themeSel.addEventListener('change', e => setTheme(e.target.value));
+      contrast2.addEventListener('change', e => setContrast(e.target.value));
+
+      // Mantener bidireccional con los selects del contenido
+      colorSel?.addEventListener('change', e => { themeSel.value = e.target.value; setTheme(e.target.value); });
+      contrastSel?.addEventListener('change', e => { contrast2.value = e.target.value; setContrast(e.target.value); });
+
+      // Otras opciones de accesibilidad
+      const linksBtn = document.getElementById('a11y-links');
+      const spacingBtn = document.getElementById('a11y-spacing');
+      const noanimBtn = document.getElementById('a11y-noanim');
+
+      function togglePressed(el, className){
+        const pressed = el.getAttribute('aria-pressed') === 'true';
+        el.setAttribute('aria-pressed', String(!pressed));
+        root.classList.toggle(className, !pressed);
+      }
+      linksBtn.addEventListener('click', () => togglePressed(linksBtn, 'a11y-links'));
+      spacingBtn.addEventListener('click', () => togglePressed(spacingBtn, 'a11y-spacing'));
+      noanimBtn.addEventListener('click', () => togglePressed(noanimBtn, 'a11y-noanim'));
+
+      // --- TTS integrado en el panel ---
+      const synth = window.speechSynthesis;
+      const voiceSel = document.getElementById('a11y-voice');
+      const rate = document.getElementById('a11y-rate');
+      const rateVal = document.getElementById('a11y-rateVal');
+      const readBtn = document.getElementById('a11y-read');
+      const pauseBtn = document.getElementById('a11y-pause');
+      const stopBtn = document.getElementById('a11y-stop');
+      let queue = [];
+
+      function populateVoices(){
+        const voices = synth.getVoices().filter(v => v.lang.toLowerCase().startsWith('es'));
+        voiceSel.innerHTML = '';
+        (voices.length ? voices : synth.getVoices()).forEach(v=>{
+          const opt = document.createElement('option');
+          opt.value = v.name; opt.textContent = v.name + ' (' + v.lang + ')';
+          voiceSel.appendChild(opt);
+        });
+      }
+      populateVoices();
+      if(typeof synth!=='undefined') synth.onvoiceschanged = populateVoices;
+
+      rate.addEventListener('input', ()=> rateVal.textContent = rate.value + 'x');
+
+      function speakNodes(nodes){
+        stopReading();
+        queue = [];
+        nodes.forEach(node => {
+          const text = node.innerText || node.textContent;
+          if(!text || !text.trim()) return;
+          const parts = text.match(/[^.!?]+[.!?\s]*/g) || [text];
+          parts.forEach(p => {
+            const u = new SpeechSynthesisUtterance(p.trim());
+            const vName = voiceSel.value;
+            const voice = synth.getVoices().find(v => v.name === vName) || synth.getVoices().find(v => v.lang.startsWith('es')) || null;
+            if(voice) u.voice = voice;
+            u.rate = parseFloat(rate.value || '1');
+            queue.push(u);
+          });
+        });
+        queue.forEach(u => synth.speak(u));
+      }
+      function stopReading(){ synth.cancel(); queue=[]; pauseBtn.textContent='Pausa'; }
+
+      readBtn.addEventListener('click', ()=>{
+        const nodes = Array.from(document.querySelectorAll('main section h2, main section h3, main section p, main section li'));
+        speakNodes(nodes);
+      });
+      pauseBtn.addEventListener('click', ()=>{
+        if(synth.speaking && !synth.paused){ synth.pause(); pauseBtn.textContent='Continuar'; }
+        else if(synth.paused){ synth.resume(); pauseBtn.textContent='Pausa'; }
+      });
+      stopBtn.addEventListener('click', stopReading);
+
+      // Botones por sección
+      document.querySelectorAll('.tts-section-btn').forEach(b=>{
+        b.addEventListener('click', ()=>{
+          const sel=b.getAttribute('data-tts'); const sec=document.querySelector(sel);
+          if(!sec) return;
+          const nodes = Array.from(sec.querySelectorAll('h2,h3,p,li'));
+          speakNodes(nodes); sec.scrollIntoView({behavior:'smooth', block:'start'});
+        });
+      });
+
+      // Si no hay soporte TTS
+      if(!('speechSynthesis' in window)){
+        readBtn.disabled = pauseBtn.disabled = stopBtn.disabled = true;
+        const warn = document.createElement('small');
+        warn.textContent = 'Lectura por voz no disponible en este navegador.';
+        panel.appendChild(warn);
+      }
+    })();
+  </script>
 </body>
 </html>
