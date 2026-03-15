@@ -1,129 +1,268 @@
-<section id="bitacora">
-  <button class="tts-section-btn" data-tts="#bitacora">🔊 Leer esta sección</button>
-  <h2>Plan de Evaluación · Bitácora del Navegante</h2>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Educación Híbrida en el Nivel Superior</title>
+  <meta name="description" content="Página informativa y educativa sobre Educación Híbrida en el Nivel Superior. Orientaciones pedagógicas, diseño de EVA y desafíos actuales." />
 
-  <h3>Equipaje · Evaluación diagnóstica</h3>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <p>
-  Antes de iniciar la travesía formativa se realizará una evaluación diagnóstica para reconocer los saberes previos de los participantes sobre los entornos virtuales de aprendizaje.
-  </p>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #22c55e;
+      --accent: #f97316;
+      --bg: #f9fafb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+    }
 
-  <p>
-  En la sección <strong>Puente de Mando</strong>, dentro de la pestaña <strong>Equipaje</strong>, deberán participar en un foro respondiendo a las siguientes preguntas:
-  </p>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  <ul>
-    <li>¿Tienes experiencias previas de estudios a distancia, como estudiante o como profesor?</li>
-    <li>¿Has diseñado entornos virtuales? ¿En qué plataforma? (Moodle, Classroom, etc.)</li>
-  </ul>
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-  <p>
-  Esta participación es obligatoria, ya que permitirá reconocer los conocimientos previos con los que cada participante inicia esta travesía educativa. Todas estas experiencias constituyen el <strong>equipaje pedagógico</strong> con el que cada navegante comienza el recorrido formativo.
-  </p>
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      padding: 4rem 1.5rem;
+      text-align: center;
+    }
 
-  <h3>La Bitácora del Navegante</h3>
+    header h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
 
-  <p>
-  La bitácora de un navegante es el registro detallado de los eventos, observaciones y reflexiones que ocurren durante un viaje. En esta propuesta formativa cada participante elaborará su propio <strong>Diario a Bordo digital</strong>.
-  </p>
+    header p {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
 
-  <p>
-  En este espacio se registrarán las evidencias de aprendizaje producidas durante el recorrido de la Actualización Académica. El objetivo es visualizar y reflexionar sobre el desarrollo de las competencias pedagógicas y digitales adquiridas.
-  </p>
+    nav {
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
 
-  <p>
-  La elaboración de la Bitácora es personal y dependerá de la creatividad y competencias digitales de cada participante. Se valorará especialmente la incorporación de formatos multimodales como:
-  </p>
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      list-style: none;
+      padding: 0.75rem 1rem;
+      gap: 1rem;
+    }
 
-  <ul>
-    <li>Videos</li>
-    <li>Podcast o audios</li>
-    <li>Infografías</li>
-    <li>Mapas conceptuales</li>
-    <li>Presentaciones interactivas</li>
-  </ul>
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
 
-  <p>
-  Estos recursos favorecen la inclusión y accesibilidad, permitiendo que los estudiantes accedan a los contenidos a través de distintos lenguajes y formatos.
-  </p>
+    nav a:hover {
+      color: var(--primary);
+    }
 
-  <p>
-  La Bitácora se desarrollará durante todo el recorrido de la Actualización Académica, por lo que el proceso evaluativo se inscribe dentro de una <strong>evaluación formativa</strong>.
-  </p>
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      display: grid;
+      gap: 3rem;
+    }
 
-  <h3>Objetivos de evaluación</h3>
+    section {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
 
-  <h4>Travesía: Tratados de Altamar · Normativas para la EaD</h4>
+    section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
 
-  <ul>
-    <li>Diseñar un <strong>mapa conceptual o infografía original</strong> que represente la estructura jerárquica del marco normativo que regula la Educación Híbrida en la Formación Docente.</li>
-    <li>Elaborar una <strong>entrada reflexiva</strong> que analice críticamente una norma seleccionada y su implicancia pedagógica.</li>
-  </ul>
+    section p {
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
 
-  <h4>Zona de Travesías · Creación de contenidos digitales</h4>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
 
-  <ul>
-    <li>Desarrollar al menos <strong>tres tipos diferentes de contenidos digitales</strong> vinculados a un objetivo de aprendizaje.</li>
-    <li>Ejemplos posibles: texto académico enriquecido, actividad interactiva, infografía o video explicativo.</li>
-  </ul>
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
-  <h3>Criterios de evaluación</h3>
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    }
 
-  <ul>
-    <li>Aplicación del marco normativo vigente para estructurar propuestas de educación híbrida.</li>
-    <li>Evaluación crítica de recursos digitales considerando usabilidad, accesibilidad y sostenibilidad.</li>
-    <li>Producción de contenidos digitales originales con criterios pedagógicos.</li>
-    <li>Diseño coherente de aulas virtuales con objetivos, contenidos y estrategias de evaluación.</li>
-  </ul>
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
 
-  <h3>Resultados de aprendizaje esperados</h3>
+    footer {
+      background: #111827;
+      color: #e5e7eb;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.9rem;
+    }
 
-  <h4>Normativas de la EaD</h4>
+    footer span {
+      color: var(--secondary);
+      font-weight: 600;
+    }
+  </style>
+</head>
 
-  <ul>
-    <li>Reconocer la normativa vigente vinculada con derechos de autor y convivencia digital.</li>
-    <li>Describir la estructura y alcance de las normativas educativas.</li>
-    <li>Aplicar la normativa para diseñar acuerdos de convivencia digital en el aula virtual.</li>
-  </ul>
+<body>
 
-  <h4>Creación de contenidos digitales</h4>
+  <header>
+    <h1>Educación Híbrida en el Nivel Superior</h1>
+    <p>
+      Orientaciones pedagógicas para repensar la enseñanza, el aprendizaje y la evaluación
+      en entornos presenciales y virtuales integrados.
+    </p>
+  </header>
 
-  <ul>
-    <li>Gestionar repositorios digitales de información utilizando herramientas colaborativas.</li>
-    <li>Seleccionar estrategias digitales interactivas según necesidades pedagógicas.</li>
-    <li>Producir materiales académicos accesibles en diversos formatos digitales.</li>
-  </ul>
+  <nav>
+    <ul>
+      <li><a href="#marco">Marco General</a></li>
+      <li><a href="#eva">Entornos Virtuales</a></li>
+      <li><a href="#tpack">Modelo TPACK</a></li>
+      <li><a href="#desafios">Desafíos</a></li>
+      <li><a href="#competencias">Competencias Digitales</a></li>
+    </ul>
+  </nav>
 
-  <h3>Retroalimentación del proceso</h3>
+  <main>
 
-  <p>
-  La retroalimentación se realizará mediante diferentes estrategias pedagógicas:
-  </p>
+    <section id="marco">
+      <h2>¿Qué es la Educación Híbrida?</h2>
+      <p>
+        La educación híbrida es una propuesta pedagógica que integra de manera intencional
+        instancias presenciales y virtuales, promoviendo trayectorias formativas más flexibles,
+        inclusivas y centradas en el estudiante.
+      </p>
+      <p>
+        No se trata de trasladar la clase tradicional al entorno digital, sino de rediseñar
+        las prácticas de enseñanza, aprendizaje y evaluación considerando nuevos roles,
+        tiempos y espacios.
+      </p>
+    </section>
 
-  <ul>
-    <li>Formulación de preguntas orientadoras.</li>
-    <li>Descripción del trabajo realizado por el estudiante.</li>
-    <li>Valoración de avances y logros.</li>
-    <li>Sugerencias para la mejora.</li>
-    <li>Andamiaje pedagógico.</li>
-    <li>Retroalimentación entre pares.</li>
-  </ul>
+    <section id="eva">
+      <h2>Entornos Virtuales de Aprendizaje (EVA)</h2>
+      <p>
+        Los EVA constituyen el espacio central para la educación híbrida. Su diseño pedagógico
+        debe contemplar múltiples dimensiones que favorezcan aprendizajes significativos.
+      </p>
 
-  <p>
-  En el entorno virtual se dispondrá de una sección denominada <strong>GPS Náutico</strong>, destinada a orientar los procesos de autoevaluación y reflexión del Diario a Bordo.
-  </p>
+      <div class="grid">
+        <div class="card">
+          <h3>Dimensión Informativa</h3>
+          <p>Selección y curaduría de recursos digitales relevantes y confiables.</p>
+        </div>
+        <div class="card">
+          <h3>Dimensión Práxica</h3>
+          <p>Actividades que promuevan la producción, la reflexión y la resolución de problemas.</p>
+        </div>
+        <div class="card">
+          <h3>Dimensión Comunicativa</h3>
+          <p>Espacios de intercambio, diálogo y retroalimentación continua.</p>
+        </div>
+        <div class="card">
+          <h3>Dimensión Tutorial</h3>
+          <p>Acompañamiento docente, seguimiento y evaluación formativa.</p>
+        </div>
+      </div>
+    </section>
 
-  <h3>Estrategias de retroalimentación</h3>
+    <section id="tpack">
+      <h2>Modelo Pedagógico TPACK</h2>
+      <p>
+        El modelo TPACK integra tres saberes fundamentales: el conocimiento disciplinar,
+        pedagógico y tecnológico. La articulación de estos componentes permite un uso
+        significativo de las TIC en la enseñanza.
+      </p>
+      <p>
+        Este enfoque favorece el desarrollo de propuestas didácticas contextualizadas,
+        colaborativas y orientadas a la construcción de entornos personales de aprendizaje (PLE).
+      </p>
+    </section>
 
-  <ul>
-    <li><strong>Rúbrica analítica</strong> utilizada durante cada travesía.</li>
-    <li>
-      <strong>Protocolo S.E.R.</strong>
-      <ul>
-        <li>Seguir haciendo</li>
-        <li>Empezar a hacer</li>
-        <li>Reformular</li>
-      </ul>
-    </li>
-  </ul>
-</section>
+    <section id="desafios">
+      <h2>Principales Desafíos</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>El Conocimiento</h3>
+          <p>Superar la memorización y promover el pensamiento complejo y profundo.</p>
+        </div>
+        <div class="card">
+          <h3>El Aprendizaje</h3>
+          <p>Atender a las características del estudiante del nuevo milenio.</p>
+        </div>
+        <div class="card">
+          <h3>La Enseñanza</h3>
+          <p>Redefinir el rol docente como mediador y guía de procesos.</p>
+        </div>
+        <div class="card">
+          <h3>La Organización</h3>
+          <p>Avanzar hacia modelos institucionales más flexibles y colaborativos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="competencias">
+      <h2>Competencias de la Educación Digital</h2>
+      <p>
+        La implementación efectiva de la educación híbrida requiere docentes con competencias
+        digitales que integren lo tecnológico, lo pedagógico y lo ético.
+      </p>
+      <p>
+        Estas competencias permiten diseñar experiencias inclusivas, accesibles y alineadas
+        con el Diseño Universal para el Aprendizaje (DUA).
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      Página educativa – Nivel Superior · Diseño HTML listo para <span>GitHub Pages</span>
+    </p>
+  </footer>
+
+</body>
+</html>
